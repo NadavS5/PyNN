@@ -1,9 +1,9 @@
-from Layer import Layer, np
+from .Layer import Layer, np
 
 class Linear(Layer):
-    W: np.matrix
-    dW: np.matrix
-    X: np.matrix
+    W: np.ndarray
+    dW: np.ndarray
+    X: np.ndarray
     in_features: int
     out_features: int
     
@@ -13,18 +13,18 @@ class Linear(Layer):
         self.out_features = out_features
         
         self.weights = np.random.randn(out_features, in_features) * 0.01
+        self.dW = np.zeros_like(self.weights)
         
-    def forward(self, X: np.matrix):
+    def forward(self, X: np.ndarray):
         """
         :param inputs 
         
         """
         
         self.X = X
-        
-        return self.weights @ X
+        return X @ self.weights.T 
  
-    def backwards(self, dY: np.array) -> np.matrix:
+    def backwards(self, dY: np.array) -> np.ndarray:
         """backwards function for Linear layer
 
         Args:
@@ -35,7 +35,12 @@ class Linear(Layer):
             dX becomes dY for the previous layer
         """ 
         
-        self.dW = np.outer(dY,self.X)
-        dX = self.weights.T @ dY
+       
+        #instead of outer, for batching
+        self.dW += dY.T @ self.X
+
+        print(dY.shape)
+        print(self.weights.shape)
+        dX = dY @ self.weights
         
         return dX

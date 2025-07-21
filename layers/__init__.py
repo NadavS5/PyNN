@@ -1,2 +1,2 @@
-from Layer import *
-from Linear import *
+from .Layer import *
+from .Linear import *

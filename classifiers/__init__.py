@@ -1,2 +1,2 @@
-from Classifier import *
-from Softmax import *
+from .Classifier import *
+from .Softmax import *

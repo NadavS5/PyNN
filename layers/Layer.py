@@ -1,14 +1,14 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import abstractmethod
 import numpy as np
 
 class Layer:
-    W: np.matrix
-    dW: np.matrix
+    W: np.ndarray
+    dW: np.ndarray
     
     @abstractmethod
-    def forward(self) -> np.matrix:
+    def forward(self) -> np.ndarray:
         pass
     
     @abstractmethod
-    def backwards(self,dY):
+    def backwards(self,dY) -> np.ndarray:
         pass
