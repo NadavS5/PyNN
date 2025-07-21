@@ -1,15 +1,13 @@
-# from .MAE import MAE
-# from .MSE import MSE
-# from .CrossEntropy import CrossEntropy
+import numpy as np
 
 from abc import abstractmethod
 
 class Loss():
-    in_features: int
+    n_logits: int
     name: str
     
     @abstractmethod
-    def forward(LastLayer: str) -> float:
+    def forward(predictions: np.ndarray, y: np.ndarray) -> float:
         pass
 
     @abstractmethod

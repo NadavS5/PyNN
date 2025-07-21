@@ -4,6 +4,8 @@ import numpy as np
 class Layer:
     W: np.ndarray
     dW: np.ndarray
+    in_features: int
+    out_features: int
     
     @abstractmethod
     def forward(self) -> np.ndarray:
