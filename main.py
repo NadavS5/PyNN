@@ -15,8 +15,4 @@ X = np.array([[1,2],[1,6]])
 
 Y = model(X)
 
-loss = MSE(2)
-
-print(loss.forward([[0,0],[0,0]], np.ones(Y.shape)))
-
-print(loss.backwards())
+print(model.loss.forward(Y, np.ones_like(Y)))

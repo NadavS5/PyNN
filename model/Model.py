@@ -8,7 +8,7 @@ from typing import Type
 class Model:
     layers: list[Layer]
     batch_size: int
-    loss_fn: Loss
+    loss: Loss
     def __init__(self, layers: list[Layer], loss_fn:Type[Loss] = MSE):
         self.layers = layers
         self.loss = loss_fn(layers[-1].out_features)
