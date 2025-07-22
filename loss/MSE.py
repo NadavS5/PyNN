@@ -2,7 +2,7 @@ from .Loss import Loss
 import numpy as np
 
 class MSE(Loss):
-    n_logits: int
+    
     predictions: np.ndarray
     y: np.ndarray
     
@@ -10,14 +10,12 @@ class MSE(Loss):
         self.n_logits = n_logits
         self.y = None
         self.predictions = None
-        
-    def forward(self, predictions: np.ndarray, y: np.ndarray = None):
+    
+    def forward(self, predictions: np.ndarray, y: np.ndarray):
         #Li = (1/2 * n_logits) * Sigma(j=1,n) (y[j]-predictions[j])^2 for one batch item
         #L = 1/n Sigma(i=1,n) (Li)
-        if y is not None:
-            self.predictions = predictions
-            self.y = y
-        
+        self.predictions = predictions
+        self.y = y
         # return (np.square((y-predictions)) / 2 * y.shape[0] ).mean()
         return np.mean(np.square((predictions - y))) / 2
 
